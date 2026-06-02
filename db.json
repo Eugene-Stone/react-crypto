@@ -603,12 +603,14 @@
 	"cryptoPurchased": [
 		{
 			"id": "bitcoin",
+			"name": "Bitcoin",
 			"amount": 0.02,
 			"price": 26244,
 			"date": "2026-06-02T11:45:44.962Z"
 		},
 		{
 			"id": "ethereum",
+			"name": "Ethereum",
 			"amount": 5,
 			"price": 2400,
 			"date": "2026-06-02T11:45:44.962Z"
