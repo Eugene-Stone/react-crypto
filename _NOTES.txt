@@ -15,15 +15,6 @@ npm i -D typescript @types/react @types/react-dom @types/node
 },
 
 
---open - Автоматическое открытие браузера в файл package.json
-"scripts": {
-	"start": "vite --open",
-	"dev": "vite --open",
-},
-
-
-Чтобы закомментировать код для линтера
-// eslint-disable-next-line
 
 В файле eslint.config.js исправить, чтобы убрать лишние предупреждения
 rules: {
@@ -43,24 +34,12 @@ rules: {
   }
 }
 
-В файле vite.config.js
-export default defineConfig({
-	plugins: [react()],
 
-	// Настройка ALIAS
-	resolve: {
-		alias: {
-			"@": path.resolve(__dirname, "./src"),
-			"@components": path.resolve(__dirname, "./src/components"),
-		},
-	},
 
-	// base: "/react-router", // Для корректной работы GitHub Pages, нужно еще добавить строчку  "postbuild": "cp dist/index.html dist/404.html", в package.json в строке "scripts"
+Чтобы закомментировать код для линтера
+// eslint-disable-next-line
 
-	// server: {
-	//   open: true, // Открытие в браузере при запуске
-	// }
-});
+
 
 
 1️⃣ Фейковый backend, который работает как настоящий REST API.
@@ -103,6 +82,36 @@ npm install -D concurrently
   "server": "json-server --watch db.json --port 3001",
   "start": "concurrently \"npm run dev\" \"npm run server\"",
 }
+
+
+
+
+
+--open - Автоматическое открытие браузера в файл package.json
+"scripts": {
+	"start": "vite --open",
+	"dev": "vite --open",
+},
+
+
+В файле vite.config.js
+export default defineConfig({
+	plugins: [react()],
+
+	// Настройка ALIAS
+	resolve: {
+		alias: {
+			"@": path.resolve(__dirname, "./src"),
+			"@components": path.resolve(__dirname, "./src/components"),
+		},
+	},
+
+	// base: "/react-router", // Для корректной работы GitHub Pages, нужно еще добавить строчку  "postbuild": "cp dist/index.html dist/404.html", в package.json в строке "scripts"
+
+	// server: {
+	//   open: true, // Открытие в браузере при запуске
+	// }
+});
 
 
 GET    http://localhost:3001/favorites?userId=1
