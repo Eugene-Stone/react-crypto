@@ -12,6 +12,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@carbon/charts-react": "^1.27.11",
 		"antd": "^6.4.3",
 		"react": "^19.2.6",
 		"react-dom": "^19.2.6",

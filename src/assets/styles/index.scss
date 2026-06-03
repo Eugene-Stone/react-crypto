@@ -12,3 +12,27 @@ body {
 .ant-list-item-meta-title {
 	margin-bottom: 0 !important;
 }
+
+.chart-holder {
+	&:not(.fullscreen) {
+		.header.cds--cc--layout-row {
+			color: #fff;
+
+			.title,
+			button {
+				color: inherit;
+			}
+
+			button:not(:hover) {
+				svg {
+					fill: currentColor !important;
+				}
+			}
+
+			.title {
+				font-size: 28px;
+				font-weight: 700;
+			}
+		}
+	}
+}
