@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { Layout, Button, List, Avatar, Tag, Flex } from 'antd';
+import useCryptoContext from '../context/useCryptoContext';
 import AppModal from '../components/AppModal';
 
 import type { CryptoItemType, CryptoItemPurchasedType } from '../types';
-import useCryptoContext from '../context/useCryptoContext';
 
-export default function AppAside() {
+type Props = {
+	setOpenDrawer: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function AppAside({ setOpenDrawer }: Props) {
 	const { cryptoList } = useCryptoContext();
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +39,10 @@ export default function AppAside() {
 	return (
 		<Layout.Sider width={350} style={siderStyle}>
 			<div style={{ paddingBottom: 10 }}>
-				<Button style={{ marginBottom: 30, width: '100%', minHeight: 50 }} type="primary">
+				<Button
+					style={{ marginBottom: 30, width: '100%', minHeight: 50 }}
+					type="primary"
+					onClick={() => setOpenDrawer((prev) => !prev)}>
 					Add New Asset
 				</Button>
 
