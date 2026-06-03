@@ -1,21 +1,13 @@
 import { Modal } from 'antd';
-import type { CryptoItemType } from '../types';
 
 type Props = {
 	title?: string;
-	modalContent: CryptoItemType | null;
 	children: React.ReactNode;
 	isModalOpen: boolean;
 	setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function AppModal({
-	title,
-	modalContent,
-	children,
-	isModalOpen,
-	setIsModalOpen,
-}: Props) {
+export default function AppModal({ title, children, isModalOpen, setIsModalOpen }: Props) {
 	return (
 		<>
 			<Modal
