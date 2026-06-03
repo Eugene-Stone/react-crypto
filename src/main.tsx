@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './assets/styles/index.scss';
 import App from './App.tsx';
+import CryptoProvider from './context/CryptoContext.tsx';
 
 const originalError = console.error;
 
@@ -14,6 +15,8 @@ console.error = (...args) => {
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
-		<App />
+		<CryptoProvider>
+			<App />
+		</CryptoProvider>
 	</StrictMode>,
 );

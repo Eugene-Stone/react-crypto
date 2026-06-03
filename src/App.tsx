@@ -1,11 +1,11 @@
-// import { useState } from 'react';
 import { Spin, Layout } from 'antd';
-import useData from './hooks/useData';
+import useCryptoContext from './context/useCryptoContext.ts';
 import AppAside from './layout/AppAside';
 import AppContent from './layout/AppContent';
+import AppDrawer from './components/AppDrawer';
 
 function App() {
-	const { cryptoList, cryptoListPurchased, loading, errorData } = useData();
+	const { loading } = useCryptoContext();
 
 	const layoutStyle = {
 		overflow: 'hidden',
@@ -17,9 +17,11 @@ function App() {
 			{loading && <Spin style={{ background: '#343D46' }} fullscreen size="large" />}
 
 			<Layout style={layoutStyle}>
-				<AppAside cryptoList={cryptoList} cryptoListPurchased={cryptoListPurchased} />
+				<AppAside />
 
-				<AppContent cryptoList={cryptoList} cryptoListPurchased={cryptoListPurchased} />
+				<AppContent />
+
+				<AppDrawer />
 			</Layout>
 		</>
 	);

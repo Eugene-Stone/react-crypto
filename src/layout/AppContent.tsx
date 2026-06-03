@@ -1,14 +1,8 @@
-import { Select, Flex, Layout } from 'antd';
-import type { CryptoItemType, CryptoItemPurchasedType } from '../types';
+import { Flex, Layout } from 'antd';
 import AppMyCryptoList from '../components/AppMyCryptoList';
 import AppChart from '../components/AppChart';
 
-type Props = {
-	cryptoList: CryptoItemType[];
-	cryptoListPurchased: CryptoItemPurchasedType[];
-};
-
-export default function AppContent({ cryptoList, cryptoListPurchased }: Props) {
+export default function AppContent() {
 	const contentStyle: React.CSSProperties = {
 		minHeight: 120,
 		color: '#fff',
@@ -20,15 +14,11 @@ export default function AppContent({ cryptoList, cryptoListPurchased }: Props) {
 		<Layout.Content style={contentStyle}>
 			<Flex style={{ gap: 30 }}>
 				<div style={{ width: 'calc(35% - 15px)' }}>
-					<h1 style={{ textAlign: 'left', marginTop: 0 }}>My Assets</h1>
-
-					<AppMyCryptoList
-						cryptoList={cryptoList}
-						cryptoListPurchased={cryptoListPurchased}
-					/>
+					<AppMyCryptoList />
 				</div>
+
 				<div style={{ width: 'calc(65% - 15px)' }}>
-					<AppChart cryptoList={cryptoList} cryptoListPurchased={cryptoListPurchased} />
+					<AppChart />
 				</div>
 			</Flex>
 		</Layout.Content>

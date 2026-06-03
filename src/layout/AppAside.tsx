@@ -3,13 +3,11 @@ import { Layout, Button, List, Avatar, Tag, Flex } from 'antd';
 import AppModal from '../components/AppModal';
 
 import type { CryptoItemType, CryptoItemPurchasedType } from '../types';
+import useCryptoContext from '../context/useCryptoContext';
 
-type Props = {
-	cryptoList: CryptoItemType[];
-	cryptoListPurchased: CryptoItemPurchasedType[];
-};
+export default function AppAside() {
+	const { cryptoList } = useCryptoContext();
 
-export default function AppAside({ cryptoList, cryptoListPurchased }: Props) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [modalContent, setModalContent] = useState<CryptoItemType | null>(null);
 

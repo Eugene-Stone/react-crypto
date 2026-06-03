@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { Card, Flex, Tag } from 'antd';
+import useCryptoContext from '../context/useCryptoContext';
 import AppModal from '../components/AppModal';
 
 import type { CryptoItemType, CryptoItemPurchasedType } from '../types';
 
-type Props = {
-	cryptoList: CryptoItemType[];
-	cryptoListPurchased: CryptoItemPurchasedType[];
-};
+export default function AppMyCryptoList() {
+	const { cryptoList, cryptoListPurchased } = useCryptoContext();
 
-export default function AppMyCryptoList({ cryptoList, cryptoListPurchased }: Props) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [modalContent, setModalContent] = useState<CryptoItemType | null>(null);
 
@@ -29,6 +27,8 @@ export default function AppMyCryptoList({ cryptoList, cryptoListPurchased }: Pro
 
 	return (
 		<>
+			<h1 style={{ textAlign: 'left', marginTop: 0 }}>My Assets</h1>
+
 			{cryptoListPurchased?.map((item, i) => {
 				const cryptoListItem = cryptoList.find((crypto) => crypto.id === item.id);
 				const cryptoGrow = cryptoListItem && cryptoListItem.price > item.price;

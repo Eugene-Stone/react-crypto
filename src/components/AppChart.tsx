@@ -1,14 +1,12 @@
 import { PieChart } from '@carbon/charts-react';
 import '@carbon/charts-react/styles.css';
+import useCryptoContext from '../context/useCryptoContext';
 
 import type { CryptoItemType, CryptoItemPurchasedType } from '../types';
 
-type Props = {
-	cryptoList: CryptoItemType[];
-	cryptoListPurchased: CryptoItemPurchasedType[];
-};
+export default function AppChart() {
+	const { cryptoList, cryptoListPurchased } = useCryptoContext();
 
-export default function AppChart({ cryptoList, cryptoListPurchased }: Props) {
 	const data = cryptoListPurchased.map((item) => {
 		const cryptoItem = cryptoList.find((crypto) => crypto.id === item.id);
 
