@@ -1,5 +1,7 @@
 import { Layout, Button, List, Avatar } from 'antd';
+import AppModal from '../components/AppModal';
 import type { CryptoItemType, CryptoItemPurchasedType } from '../types';
+import { useState } from 'react';
 
 type Props = {
 	cryptoList: CryptoItemType[];
@@ -7,6 +9,14 @@ type Props = {
 };
 
 export default function AppAside({ cryptoList, cryptoListPurchased }: Props) {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [modalContent, setModalContent] = useState<CryptoItemType | null>(null);
+
+	const showModal = (content: CryptoItemType) => {
+		setIsModalOpen(true);
+		setModalContent(content);
+	};
+
 	const siderStyle: React.CSSProperties = {
 		textAlign: 'center',
 		lineHeight: '120px',
@@ -25,39 +35,34 @@ export default function AppAside({ cryptoList, cryptoListPurchased }: Props) {
 		backgroundColor: '#fff',
 	};
 
-	const data = [
-		{
-			title: 'Ant Design Title 1',
-		},
-		{
-			title: 'Ant Design Title 2',
-		},
-		{
-			title: 'Ant Design Title 3',
-		},
-		{
-			title: 'Ant Design Title 4',
-		},
-	];
-
 	return (
 		<Layout.Sider width={350} style={siderStyle}>
-			<Button type="primary">Add Asset</Button>
+			<div style={{ paddingBottom: 10 }}>
+				<Button type="primary">Add Asset</Button>
 
-			<List
-				itemLayout="horizontal"
-				dataSource={cryptoList}
-				renderItem={(item, index) => (
-					<List.Item style={siderListItemStyle}>
-						<List.Item.Meta
-							style={{ alignItems: 'center' }}
-							avatar={<Avatar src={item.icon} />}
-							title={<a href="https://ant.design">{item.name}</a>}
-							// description="Price: $0.59823"
-						/>
-					</List.Item>
-				)}
-			/>
+				<List
+					itemLayout="horizontal"
+					dataSource={cryptoList}
+					renderItem={(item, index) => (
+						<List.Item style={siderListItemStyle}>
+							<List.Item.Meta
+								style={{ alignItems: 'center' }}
+								avatar={<Avatar src={item.icon} />}
+								title={<a onClick={() => showModal(item)}>{item.name}</a>}
+								// description="Price: $0.59823"
+							/>
+						</List.Item>
+					)}
+				/>
+			</div>
+
+			<AppModal
+				isModalOpen={isModalOpen}
+				setIsModalOpen={setIsModalOpen}
+				modalContent={modalContent}
+				title={modalContent?.name}>
+				123
+			</AppModal>
 		</Layout.Sider>
 	);
 }
