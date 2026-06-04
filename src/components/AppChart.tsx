@@ -8,16 +8,16 @@ export default function AppChart() {
 	const { cryptoList, cryptoListPurchased } = useCryptoContext();
 
 	const data = cryptoListPurchased.map((item) => {
-		const cryptoItem = cryptoList.find((crypto) => crypto.id === item.id);
+		const cryptoItem = cryptoList.find((crypto) => crypto.coinId === item.coinId);
 
 		return {
-			group: cryptoItem?.name || item.id,
+			group: cryptoItem?.name || item.coinId,
 			value: cryptoItem && item.amount * cryptoItem.price,
 		};
 	});
 
 	const totalAmount = cryptoListPurchased.reduce((acc, item) => {
-		const cryptoItem = cryptoList.find((crypto) => crypto.id === item.id);
+		const cryptoItem = cryptoList.find((crypto) => crypto.coinId === item.coinId);
 
 		if (!cryptoItem) {
 			return acc;

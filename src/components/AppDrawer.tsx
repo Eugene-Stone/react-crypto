@@ -22,31 +22,30 @@ export default function AppDrawer({ openDrawer, setOpenDrawer }: Props) {
 			onClose={() => setOpenDrawer((prev) => !prev)}
 			open={openDrawer}
 			placement="left">
-			{selectedCoin === null ? (
-				<Select
-					placeholder="Choose coin"
-					style={{ width: '100%', marginBottom: 20 }}
-					onSelect={(value) =>
-						setSelectedCoin(cryptoList.find((item) => item.id === value) || null)
-					}
-					options={cryptoList.map((option, index) => ({
-						value: option.id,
-						label: option.name,
-						icon: option.icon,
-					}))}
-					optionRender={(option) => (
-						<Flex align="center">
-							<img
-								role="img"
-								src={option.data.icon}
-								width={20}
-								style={{ marginRight: 12 }}
-							/>
-							{`${option.data.label}`}
-						</Flex>
-					)}
-				/>
-			) : (
+			<Select
+				placeholder="Choose coin"
+				style={{ width: '100%', marginBottom: 20 }}
+				onSelect={(value) =>
+					setSelectedCoin(cryptoList.find((item) => item.coinId === value) || null)
+				}
+				options={cryptoList.map((option, index) => ({
+					value: option.coinId,
+					label: option.name,
+					icon: option.icon,
+				}))}
+				optionRender={(option) => (
+					<Flex align="center">
+						<img
+							role="img"
+							src={option.data.icon}
+							width={20}
+							style={{ marginRight: 12 }}
+						/>
+						{`${option.data.label}`}
+					</Flex>
+				)}
+			/>
+			{selectedCoin !== null && (
 				<AppForm selectedCoin={selectedCoin} setSelectedCoin={setSelectedCoin} />
 			)}
 		</Drawer>

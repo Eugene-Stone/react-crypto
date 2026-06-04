@@ -1,7 +1,8 @@
 import type { Dayjs } from 'dayjs';
 
 export type CryptoItemType = {
-	id: string;
+	id?: string;
+	coinId: string;
 	icon: string;
 	name: string;
 	symbol: string;
@@ -22,7 +23,8 @@ export type CryptoItemType = {
 };
 
 export type CryptoItemPurchasedType = {
-	id: string;
+	id?: string;
+	coinId: string;
 	name: string;
 	amount: number;
 	price: number;

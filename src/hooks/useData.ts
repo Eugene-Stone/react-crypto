@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
 import { request } from '../api/request';
-import type { CryptoItemType, CryptoItemPurchasedType } from '../types';
+import { message } from 'antd';
+
+import type { CryptoItemType, CryptoItemPurchasedType, FormType } from '../types';
+
+type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 export default function useData() {
 	const [cryptoList, setCryptoList] = useState<CryptoItemType[]>([]);
 	const [cryptoListPurchased, setCryptoListPurchased] = useState<CryptoItemPurchasedType[]>([]);
 	const [loading, setLoading] = useState(true);
+	const [statusForm, setStatusForm] = useState<FormStatus>('idle');
 	const [errorData, setErrorData] = useState<string | null>(null);
 
 	useEffect(() => {
@@ -46,10 +51,48 @@ export default function useData() {
 		};
 	}, []);
 
+	async function sendFormData(values: FormType, selectedCoin: CryptoItemType) {
+		setStatusForm('loading');
+
+		try {
+			await request<CryptoItemPurchasedType[]>('/cryptoPurchased', {
+				method: 'POST',
+				body: JSON.stringify({
+					coinId: selectedCoin.coinId,
+					name: selectedCoin.name,
+					amount: values.amount,
+					price: values.price,
+					date: values.datePurchase.toISOString(),
+				}),
+			});
+
+			setCryptoListPurchased((prev) => [
+				...prev,
+				{
+					coinId: selectedCoin.coinId,
+					name: selectedCoin.name,
+					amount: values.amount,
+					price: values.price,
+					date: values.datePurchase.toISOString(),
+				},
+			]);
+
+			setStatusForm('success');
+
+			message.success('Form submitted successfully!');
+			console.log('Form Data:', values);
+		} catch (error) {
+			setStatusForm('error');
+		}
+	}
+
 	return {
 		cryptoList,
 		cryptoListPurchased,
+		setCryptoListPurchased,
 		loading,
 		errorData,
+		sendFormData,
+		statusForm,
 	};
 }

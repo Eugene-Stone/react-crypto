@@ -14,7 +14,7 @@ export default function AppMyCryptoList() {
 	const showModal = (content: CryptoItemPurchasedType) => {
 		setIsModalOpen(true);
 
-		let contentInner = cryptoList.find((item) => item.id === content.id);
+		let contentInner = cryptoList.find((item) => item.coinId === content.coinId);
 
 		if (contentInner) {
 			setModalContent(contentInner);
@@ -30,7 +30,7 @@ export default function AppMyCryptoList() {
 			<h1 style={{ textAlign: 'left', marginTop: 0 }}>My Assets</h1>
 
 			{cryptoListPurchased?.map((item, i) => {
-				const cryptoListItem = cryptoList.find((crypto) => crypto.id === item.id);
+				const cryptoListItem = cryptoList.find((crypto) => crypto.coinId === item.coinId);
 				const cryptoGrow = cryptoListItem && cryptoListItem.price > item.price;
 
 				return (

@@ -1,4 +1,5 @@
 import { Button, DatePicker, Form, InputNumber } from 'antd';
+import useCryptoContext from '../context/useCryptoContext';
 
 import type { CryptoItemType, FormType } from '../types';
 
@@ -8,20 +9,32 @@ type Props = {
 };
 
 export default function AppForm({ selectedCoin, setSelectedCoin }: Props) {
+	const { sendFormData } = useCryptoContext();
+
 	const [form] = Form.useForm();
 	const amount = Form.useWatch('amount', form);
 	const price = Form.useWatch('price', form);
 	const totalPrice = (amount || 0) * (price || 0);
 
-	const handleSubmitForm = (values: FormType) => {
-		console.log('Form Data:', values);
-		setTimeout(() => {
-			setSelectedCoin(null);
-		}, 300);
+	const handleSubmitForm = async (values: FormType) => {
+		if (!selectedCoin) return;
+		await sendFormData(values, selectedCoin);
+
+		// Reset the form fields back to empty or initialValues
+		form.resetFields();
 	};
 
 	return (
 		<Form form={form} onFinish={handleSubmitForm}>
+			<h2 style={{ display: 'flex', alignItems: 'center', marginTop: 0 }}>
+				<img
+					src={selectedCoin?.icon}
+					alt={selectedCoin?.name}
+					width={50}
+					style={{ marginRight: 10 }}
+				/>
+				<span>{selectedCoin?.name}</span>
+			</h2>
 			<Form.Item
 				label="Amount"
 				name="amount"
