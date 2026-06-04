@@ -1,3 +1,5 @@
+import type { Dayjs } from 'dayjs';
+
 export type CryptoItemType = {
 	id: string;
 	icon: string;
@@ -30,4 +32,9 @@ export type CryptoItemPurchasedType = {
 export type CryptoDataType = {
 	cryptoData: CryptoItemType[];
 	cryptoPurchased: CryptoItemPurchasedType[];
+};
+export type FormType = {
+	amount: number;
+	price: number;
+	datePurchase: Dayjs;
 };

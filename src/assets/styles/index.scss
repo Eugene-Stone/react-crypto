@@ -36,3 +36,26 @@ body {
 		}
 	}
 }
+
+
+.drawer {
+	.ant-form-item-row {
+		.ant-form-item-label {
+			width: 130px;
+		}
+	}
+
+	.ant-form-item-control-input-content {
+		.ant-btn {
+			width: 100%;
+			min-height: 50px;
+		}
+	}
+}
+
+.ant-drawer-header-title {
+	flex-direction: row-reverse;
+	.ant-drawer-close {
+		margin: 0 !important;
+	}
+}
