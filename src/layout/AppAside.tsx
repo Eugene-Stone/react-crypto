@@ -29,15 +29,15 @@ export default function AppAside({ setOpenDrawer }: Props) {
 	};
 
 	const siderListItemStyle: React.CSSProperties = {
-		borderRadius: 10,
-		marginBottom: 20,
-		padding: '5px 10px',
+		borderRadius: 8,
+		marginBottom: 10,
+		padding: '2px 10px',
 		textAlign: 'left',
 		backgroundColor: '#fff',
 	};
 
 	return (
-		<Layout.Sider width={350} style={siderStyle}>
+		<Layout.Sider className="app-aside" width={350} style={siderStyle}>
 			<div style={{ paddingBottom: 10 }}>
 				<Button
 					style={{ marginBottom: 30, width: '100%', minHeight: 50 }}

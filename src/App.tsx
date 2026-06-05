@@ -18,7 +18,7 @@ function App() {
 		<>
 			{loading && <Spin style={{ background: '#343D46' }} fullscreen size="large" />}
 
-			<Layout style={layoutStyle}>
+			<Layout className="app-layout" style={layoutStyle}>
 				<AppAside setOpenDrawer={setOpenDrawer} />
 
 				<AppContent />

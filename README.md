@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# React Crypto Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Небольшой дашборд на React + TypeScript для управления портфелем криптовалют.
 
-Currently, two official plugins are available:
+Приложение использует локальные мок-данные, которые обслуживаются `json-server`, и включает:
+- список доступных криптовалют,
+- подробности актива в модальном окне,
+- портфель приобретённых активов,
+- круговую диаграмму распределения портфеля,
+- форму в для добавления новой позиции.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Возможности
 
-## React Compiler
+- Список криптовалют с иконками, ценой и рыночными данными
+- Модальное окно с изменением цены за 1 час, 24 часа и 7 дней
+- Трекер портфеля купленных монет
+- Рассчет профита и общей стоимости позиции
+- Визуализация портфеля на круговой диаграмме
+- Локальный mock backend через `json-server`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Технологии
 
-## Expanding the ESLint configuration
+- React 19
+- TypeScript
+- Vite
+- Ant Design
+- Carbon Charts React
+- json-server
+- ESLint
+- Sass
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Структура проекта
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- `src/App.tsx` — главный компонент приложения
+- `src/context/CryptoContext.tsx` — провайдер глобального состояния
+- `src/hooks/useData.ts` — логика загрузки данных и отправки формы
+- `src/components/` — UI-компоненты (`AppDrawer`, `AppForm`, `AppChart`, `AppMyCryptoList`, `AppModal`)
+- `src/layout/` — базовый layout (`AppAside`, `AppContent`)
+- `src/api/request.ts` — клиент для mock API `json-server`
+- `db.json` — данные криптовалют и приобретённых активов
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Запуск
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Установите зависимости:
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Запустите приложение:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm run start
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Эта команда запускает одновременно Vite и `json-server`.
+
+3. Откройте в браузере:
+
+```text
+http://localhost:5173
 ```

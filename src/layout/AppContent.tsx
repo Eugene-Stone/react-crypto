@@ -11,13 +11,15 @@ export default function AppContent() {
 	};
 
 	return (
-		<Layout.Content style={contentStyle}>
-			<Flex style={{ gap: 30 }}>
-				<div style={{ width: 'calc(35% - 15px)' }}>
+		<Layout.Content className="app-content" style={contentStyle}>
+			<Flex className="app-content-row" style={{ gap: 30 }}>
+				<div className="app-content-panel" style={{ width: 'calc(35% - 15px)' }}>
 					<AppMyCryptoList />
 				</div>
 
-				<div style={{ width: 'calc(65% - 15px)' }}>
+				<div
+					className="app-content-panel app-chart-panel"
+					style={{ width: 'calc(65% - 15px)' }}>
 					<AppChart />
 				</div>
 			</Flex>
